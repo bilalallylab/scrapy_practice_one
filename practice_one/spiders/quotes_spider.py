@@ -34,7 +34,7 @@ class QuotesSpider(scrapy.Spider):
 
             yield load.load_item()
 
-        next_page = response.css('.next a').attrib['href']
-        if next_page is not None:
-            yield response.follow(next_page, callback=self.parse)
-
+        if 'href' in response.css('.next a').attrib:
+            next_page = response.css('.next a').attrib['href']
+            if next_page is not None:
+                yield response.follow(next_page, callback=self.parse)

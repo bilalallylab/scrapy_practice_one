@@ -1,5 +1,2 @@
-libxml2-dev
-libxslt1-dev
-zlib1g-dev
-libffi-dev
-libssl-dev
+Scrapy
+w3lib
