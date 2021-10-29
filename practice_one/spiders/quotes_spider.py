@@ -1,6 +1,6 @@
 import scrapy
 from scrapy.loader import ItemLoader
-from itemloaders.processors import TakeFirst, MapCompose, Join
+from itemloaders.processors import TakeFirst, MapCompose, Join, Identity
 from w3lib.html import remove_tags
 
 
@@ -15,7 +15,7 @@ class QuotesItem(scrapy.Item):
     )
     tags = scrapy.Field(
         input_processor=MapCompose(remove_tags),
-        output_processor=TakeFirst()
+        output_processor=Identity()
     )
 
 
