@@ -1,2 +1,4 @@
 Scrapy
 w3lib
+betamax
+betamax-serializers

@@ -1,0 +1,253 @@
+{
+  "http_interactions": [
+    {
+      "recorded_at": "2021-11-01T12:17:34",
+      "request": {
+        "body": {
+          "encoding": "utf-8",
+          "string": ""
+        },
+        "headers": {
+          "Accept": [
+            "*/*"
+          ],
+          "Accept-Encoding": [
+            "gzip, deflate"
+          ],
+          "Connection": [
+            "keep-alive"
+          ],
+          "User-Agent": [
+            "python-requests/2.26.0"
+          ]
+        },
+        "method": "GET",
+        "uri": "https://httpbin.org/get"
+      },
+      "response": {
+        "body": {
+          "encoding": "utf-8",
+          "string": "{\n  \"args\": {}, \n  \"headers\": {\n    \"Accept\": \"*/*\", \n    \"Accept-Encoding\": \"gzip, deflate\", \n    \"Host\": \"httpbin.org\", \n    \"User-Agent\": \"python-requests/2.26.0\", \n    \"X-Amzn-Trace-Id\": \"Root=1-617fdade-1d4cd5413edfbba55b348c03\"\n  }, \n  \"origin\": \"111.119.188.10\", \n  \"url\": \"https://httpbin.org/get\"\n}\n"
+        },
+        "headers": {
+          "Access-Control-Allow-Credentials": [
+            "true"
+          ],
+          "Access-Control-Allow-Origin": [
+            "*"
+          ],
+          "Connection": [
+            "keep-alive"
+          ],
+          "Content-Length": [
+            "308"
+          ],
+          "Content-Type": [
+            "application/json"
+          ],
+          "Date": [
+            "Mon, 01 Nov 2021 12:17:34 GMT"
+          ],
+          "Server": [
+            "gunicorn/19.9.0"
+          ]
+        },
+        "status": {
+          "code": 200,
+          "message": "OK"
+        },
+        "url": "https://httpbin.org/get"
+      }
+    },
+    {
+      "recorded_at": "2021-11-01T12:17:34",
+      "request": {
+        "body": {
+          "encoding": "utf-8",
+          "string": "{\"some-attribute\": \"some-value\"}"
+        },
+        "headers": {
+          "Accept": [
+            "*/*"
+          ],
+          "Accept-Encoding": [
+            "gzip, deflate"
+          ],
+          "Connection": [
+            "keep-alive"
+          ],
+          "Content-Length": [
+            "32"
+          ],
+          "Content-Type": [
+            "application/json"
+          ],
+          "User-Agent": [
+            "python-requests/2.26.0"
+          ]
+        },
+        "method": "POST",
+        "uri": "https://httpbin.org/post?id=20"
+      },
+      "response": {
+        "body": {
+          "encoding": "utf-8",
+          "string": "{\n  \"args\": {\n    \"id\": \"20\"\n  }, \n  \"data\": \"{\\\"some-attribute\\\": \\\"some-value\\\"}\", \n  \"files\": {}, \n  \"form\": {}, \n  \"headers\": {\n    \"Accept\": \"*/*\", \n    \"Accept-Encoding\": \"gzip, deflate\", \n    \"Content-Length\": \"32\", \n    \"Content-Type\": \"application/json\", \n    \"Host\": \"httpbin.org\", \n    \"User-Agent\": \"python-requests/2.26.0\", \n    \"X-Amzn-Trace-Id\": \"Root=1-617fdade-00b9e4725f156cf01ad20ca3\"\n  }, \n  \"json\": {\n    \"some-attribute\": \"some-value\"\n  }, \n  \"origin\": \"111.119.188.10\", \n  \"url\": \"https://httpbin.org/post?id=20\"\n}\n"
+        },
+        "headers": {
+          "Access-Control-Allow-Credentials": [
+            "true"
+          ],
+          "Access-Control-Allow-Origin": [
+            "*"
+          ],
+          "Connection": [
+            "keep-alive"
+          ],
+          "Content-Length": [
+            "538"
+          ],
+          "Content-Type": [
+            "application/json"
+          ],
+          "Date": [
+            "Mon, 01 Nov 2021 12:17:34 GMT"
+          ],
+          "Server": [
+            "gunicorn/19.9.0"
+          ]
+        },
+        "status": {
+          "code": 200,
+          "message": "OK"
+        },
+        "url": "https://httpbin.org/post?id=20"
+      }
+    },
+    {
+      "recorded_at": "2021-11-01T12:17:34",
+      "request": {
+        "body": {
+          "encoding": "utf-8",
+          "string": ""
+        },
+        "headers": {
+          "Accept": [
+            "*/*"
+          ],
+          "Accept-Encoding": [
+            "gzip, deflate"
+          ],
+          "Connection": [
+            "keep-alive"
+          ],
+          "User-Agent": [
+            "python-requests/2.26.0"
+          ]
+        },
+        "method": "GET",
+        "uri": "https://httpbin.org/get?id=20"
+      },
+      "response": {
+        "body": {
+          "encoding": "utf-8",
+          "string": "{\n  \"args\": {\n    \"id\": \"20\"\n  }, \n  \"headers\": {\n    \"Accept\": \"*/*\", \n    \"Accept-Encoding\": \"gzip, deflate\", \n    \"Host\": \"httpbin.org\", \n    \"User-Agent\": \"python-requests/2.26.0\", \n    \"X-Amzn-Trace-Id\": \"Root=1-617fdade-1496fb5508594d51229ee11e\"\n  }, \n  \"origin\": \"111.119.188.10\", \n  \"url\": \"https://httpbin.org/get?id=20\"\n}\n"
+        },
+        "headers": {
+          "Access-Control-Allow-Credentials": [
+            "true"
+          ],
+          "Access-Control-Allow-Origin": [
+            "*"
+          ],
+          "Connection": [
+            "keep-alive"
+          ],
+          "Content-Length": [
+            "332"
+          ],
+          "Content-Type": [
+            "application/json"
+          ],
+          "Date": [
+            "Mon, 01 Nov 2021 12:17:34 GMT"
+          ],
+          "Server": [
+            "gunicorn/19.9.0"
+          ]
+        },
+        "status": {
+          "code": 200,
+          "message": "OK"
+        },
+        "url": "https://httpbin.org/get?id=20"
+      }
+    },
+    {
+      "recorded_at": "2021-11-01T12:17:35",
+      "request": {
+        "body": {
+          "encoding": "utf-8",
+          "string": "{\"some-other-attribute\": \"some-other-value\"}"
+        },
+        "headers": {
+          "Accept": [
+            "*/*"
+          ],
+          "Accept-Encoding": [
+            "gzip, deflate"
+          ],
+          "Connection": [
+            "keep-alive"
+          ],
+          "Content-Length": [
+            "44"
+          ],
+          "Content-Type": [
+            "application/json"
+          ],
+          "User-Agent": [
+            "python-requests/2.26.0"
+          ]
+        },
+        "method": "POST",
+        "uri": "https://httpbin.org/post?id=20"
+      },
+      "response": {
+        "body": {
+          "encoding": "utf-8",
+          "string": "{\n  \"args\": {\n    \"id\": \"20\"\n  }, \n  \"data\": \"{\\\"some-other-attribute\\\": \\\"some-other-value\\\"}\", \n  \"files\": {}, \n  \"form\": {}, \n  \"headers\": {\n    \"Accept\": \"*/*\", \n    \"Accept-Encoding\": \"gzip, deflate\", \n    \"Content-Length\": \"44\", \n    \"Content-Type\": \"application/json\", \n    \"Host\": \"httpbin.org\", \n    \"User-Agent\": \"python-requests/2.26.0\", \n    \"X-Amzn-Trace-Id\": \"Root=1-617fdade-0c23f3191b6d725e562b6e70\"\n  }, \n  \"json\": {\n    \"some-other-attribute\": \"some-other-value\"\n  }, \n  \"origin\": \"111.119.188.10\", \n  \"url\": \"https://httpbin.org/post?id=20\"\n}\n"
+        },
+        "headers": {
+          "Access-Control-Allow-Credentials": [
+            "true"
+          ],
+          "Access-Control-Allow-Origin": [
+            "*"
+          ],
+          "Connection": [
+            "keep-alive"
+          ],
+          "Content-Length": [
+            "562"
+          ],
+          "Content-Type": [
+            "application/json"
+          ],
+          "Date": [
+            "Mon, 01 Nov 2021 12:17:34 GMT"
+          ],
+          "Server": [
+            "gunicorn/19.9.0"
+          ]
+        },
+        "status": {
+          "code": 200,
+          "message": "OK"
+        },
+        "url": "https://httpbin.org/post?id=20"
+      }
+    }
+  ],
+  "recorded_with": "betamax/0.8.1"
+}
