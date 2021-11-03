@@ -2,3 +2,5 @@ Scrapy
 w3lib
 betamax
 betamax-serializers
+scrapyd
+scrapyd-client
