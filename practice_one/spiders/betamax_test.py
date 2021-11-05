@@ -1,3 +1,6 @@
+import scrapy
+from scrapy.linkextractors import LinkExtractor
+from scrapy.spiders import CrawlSpider, Rule
 import betamax
 import scrapy
 from practice_one.spiders.quotes_spider import QuotesSpider
@@ -17,14 +20,10 @@ with betamax.Betamax.configure() as config:
     config.preserve_exact_body_bytes = True
 
 
-class Testing(BetamaxTestCase):
+class BetamaxTestSpider(CrawlSpider):
+    name = 'test'
 
-    def load_json(self, file_path):
-        with open(file_path) as json_file:
-            data = json.load(json_file)
-        return data
-
-    def test_parse(self):
+    def parse_item(self, response):
         sp_obj = QuotesSpider()
         qi_obj = QuotesItem()
 
@@ -41,15 +40,3 @@ class Testing(BetamaxTestCase):
                 self.assertEqual(each_item['tags'], list)
             else:
                 raise ValueError('yield output unexpected item')
-
-        # for each_val in self.load_json(file_path="quotes.json"):
-        #     self.assertEqual(each_val, result.next())
-        #
-        # with self.assertRaises(StopIteration):
-        #     result.next()
-
-
-class TestSpider(scrapy.Spider):
-    name = "test"
-    test_obj = Testing()
-    test_obj.test_parse()
