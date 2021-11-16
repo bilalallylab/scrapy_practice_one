@@ -6,17 +6,14 @@ from scrapy.http.request import Request
 
 
 class DoordashItems(scrapy.Item):
-    restaurant_name = scrapy.Field(
-        input_processor=MapCompose(remove_tags),
-        output_processor=TakeFirst()
-    )
-    # address = ''
-    # working_hours = ''
-    # price_range = ''
-    # number_of_ratings = ''
-    # average_rating = ''
-    # reviews = ''
-    # menu_items = 0
+    restaurant_name = scrapy.Field(input_processor=MapCompose(remove_tags), output_processor=TakeFirst())
+    address = scrapy.Field(input_processor=MapCompose(remove_tags), output_processor=TakeFirst())
+    working_hours = scrapy.Field(input_processor=MapCompose(remove_tags), output_processor=TakeFirst())
+    # price_range = scrapy.Field(input_processor=MapCompose(remove_tags), output_processor=Identity())
+    number_of_ratings = scrapy.Field(input_processor=MapCompose(remove_tags), output_processor=TakeFirst())
+    average_rating = scrapy.Field(input_processor=MapCompose(remove_tags), output_processor=TakeFirst())
+    reviews = scrapy.Field(input_processor=MapCompose(remove_tags), output_processor=TakeFirst())
+    # menu_items = len(scrapy.Field(input_processor=MapCompose(remove_tags), output_processor=Identity()))
 
 
 class DoordashSpider(scrapy.Spider):
@@ -30,33 +27,36 @@ class DoordashSpider(scrapy.Spider):
                 city=city.lower(), state=state.lower())]
         else:
             self.start_urls = ["https://www.doordash.com/"]
+            # self.start_urls = ["https://www.doordash.com/food-delivery/austin-tx-restaurants/"]
         super().__init__(**kwargs)
 
-    # def open_res_link(self, res_link):
-    #     yield scrapy.Request("https://www.doordash.com/{res_link}".format(res_link=res_link))
-    #
-    # def parsing(self, response):
-    #     yield {
-    #         'res_name': response.xpath('//*[@class="sc-cMljjf eTbdzc sc-ccLTTT jiSDoO"]/text()').get()
-    #     }
+    def parsing(self, response):
+        load = ItemLoader(item=DoordashItems(), selector=response)
+        load.add_xpath('restaurant_name', '//*[@id="__next"]/div[2]/div[1]/div[1]/div[1]/header/div[2]/h1/text()')
+        load.add_xpath('address', '//*[@id="__next"]/div[2]/div[1]/div[1]/div[1]/div[14]/div/div[2]/span[3]/text()')
+        load.add_xpath('working_hours', '//*[@id="__next"]/div[2]/div[1]/div[1]/div[1]/div[2]/span/text()')
+        load.add_xpath('number_of_ratings',
+                       '//*[@id="__next"]/div[2]/div[1]/div[1]/div[1]/header/div[2]/div[1]/div[3]/div/span[2]/text()')
+        load.add_xpath('average_rating',
+                       '//*[@id="__next"]/div[2]/div[1]/div[1]/div[1]/header/div[2]/div[1]/div[3]/div/span[1]/text()')
+        load.add_xpath('reviews', './/div[2]/h2/text()')
 
-    # def start_requests(self, url):
-    #     yield Request(url, self.parse)
+        price_range = "{min_price} - {max_price}".format(
+            min_price=min(response.xpath('//*[@data-anchor-id="StoreMenuItemPrice"]/text()').getall()),
+            max_price=max(response.xpath('//*[@data-anchor-id="StoreMenuItemPrice"]/text()').getall()))
+        load.add_value('price_range', price_range)
+
+        menu_items = len(response.xpath('//*[@data-anchor-id="MenuItem"]').getall())
+        load.add_value('menu_items', menu_items)
+
+        yield load.load_item()
 
     def parse(self, response):
-        yield {"body": response.xpath("//body")}
-        # for restaurant in response.xpath('//div[@class="StoreCard_root___1p3uN"]'):
-            # load = ItemLoader(item=DoordashItems(), selector=restaurant)
-            # load.add_xpath('restaurant_name', './/div[2]/h2/text()')
+        for i in range(len(response.xpath(
+                '//*[@id="__next"]/div/div/div[1]/div[3]/div[2]/div[1]/div[2]/div/a'))):
+            if 'href' in response.css('.next a').attrib:
+                restaurant_page_url = response.xpath(
+                    '//*[@id="__next"]/div/div/div[1]/div[3]/div[2]/div[1]/div[2]/div/a[%s]/@href' % i)
+                if restaurant_page_url is not None:
+                    yield response.follow(restaurant_page_url, callback=self.parsing)
 
-            # yield {"res": './/div[2]/h2/text()'}
-
-            # response.follow(self.main_url+restaurant, callback=self.parsing)
-            # self.start_urls(self.main_url+restaurant)
-            # response.xpath("")
-
-            # load = ItemLoader(item=DoordashItems(), selector=restaurant)
-            # load.add_xpath('restaurant_name', './/span/text()')
-            # load.add_xpath('author', './/span[2]/small/text()')
-            # load.add_xpath('tags', './/div/a/text()')
-            # yield load.load_item()
