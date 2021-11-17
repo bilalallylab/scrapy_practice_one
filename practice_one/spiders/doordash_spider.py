@@ -41,9 +41,9 @@ class DoordashSpider(scrapy.Spider):
                        '//*[@id="__next"]/div[2]/div[1]/div[1]/div[1]/header/div[2]/div[1]/div[3]/div/span[1]/text()')
         load.add_xpath('reviews', './/div[2]/h2/text()')
 
-        price_range = "{min_price} - {max_price}".format(
-            min_price=min(response.xpath('//*[@data-anchor-id="StoreMenuItemPrice"]/text()').getall()),
-            max_price=max(response.xpath('//*[@data-anchor-id="StoreMenuItemPrice"]/text()').getall()))
+        price_range = "{minimum_price} - {maximum_price}".format(
+            minimum_price=min(response.xpath('//*[@data-anchor-id="StoreMenuItemPrice"]/text()').getall()),
+            maximum_price=max(response.xpath('//*[@data-anchor-id="StoreMenuItemPrice"]/text()').getall()))
         load.add_value('price_range', price_range)
 
         menu_items = len(response.xpath('//*[@data-anchor-id="MenuItem"]').getall())
